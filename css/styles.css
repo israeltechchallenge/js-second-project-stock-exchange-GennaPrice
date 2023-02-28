@@ -60,3 +60,8 @@ img {
     margin-left: 5px;
     white-space: nowrap;
   }
+
+  .marqueeItem > span {
+    color: black;
+  }
+

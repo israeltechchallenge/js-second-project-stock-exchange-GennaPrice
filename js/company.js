@@ -10,7 +10,7 @@ const loadingSpinner2 = document.querySelector(".loadingSpinner");
 
 const companySymbol = new URLSearchParams(window.location.search).get("symbol");
 
-function genearatePage() {
+function generatePage() {
     enableSpinner(loadingSpinner2)
     setTimeout(() => {
         getCompanyProfile()
@@ -19,7 +19,7 @@ function genearatePage() {
 }
 
 function getCompanyProfile() {
-    fetch(`https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/company/profile/${companySymbol}`).then(response => response.json())
+    fetch(`${baseURL}company/profile/${companySymbol}`).then(response => response.json())
         .then(data => {
 
             let companyImage = data.profile.image;
@@ -48,8 +48,7 @@ function getCompanyProfile() {
 }
 
 function getStockHistory() {
-
-    fetch(`https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/historical-price-full/${companySymbol}?serietype=line`).then(response => response.json())
+    fetch(`${baseURL}historical-price-full/${companySymbol}?serietype=line`).then(response => response.json())
         .then(data => {
             let length = 30
             let dateArray = []
@@ -80,3 +79,4 @@ function getStockHistory() {
         });
 }
 
+window.onload = generatePage;
