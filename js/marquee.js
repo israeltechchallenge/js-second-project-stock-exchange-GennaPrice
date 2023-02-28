@@ -1,6 +1,6 @@
 
 const marqueeDiv = document.querySelector(".marqueeTextContainer");
-const marqueeLoading = document.querySelector(".loadingMarquee");
+//const marqueeLoading = document.querySelector(".loadingMarquee");
 
 class MarqueeDiv {
     constructor(tag) {
@@ -23,25 +23,31 @@ class MarqueeDiv {
     }
 }
 
-function getMarqueeInfo() {
-    fetch(`${baseURL}stock/list`)
-        .then(response => response.json())
-        .then(data => {
-            for (let i = 0; i < 50; i++) {
-                const companyMarqueeSymbol = data[i].symbol;
-                const companyMarqueePrice = data[i].price;
-                const item = `<b>${companyMarqueeSymbol}</b> <span>${companyMarqueePrice}</span>`;
-                const marqueeElement = new MarqueeDiv('div');
-                marqueeElement.appendTo('.marqueeTextContainer');
-                marqueeElement.write(item);
-                marqueeElement.addClass("d-flex");
-                marqueeElement.addClass("marqueeItem");
-            }
-            disableSpinner(marqueeLoading)
-        });
+class Marquee {
+    constructor(element) {
+        this.element = element;
+    }
+    renderMarqueeItems() {
+        fetch(`${baseURL}stock/list`)
+            .then(response => response.json())
+            .then(data => {
+                for (let i = 0; i < 50; i++) {
+                    const companyMarqueeSymbol = data[i].symbol;
+                    const companyMarqueePrice = data[i].price;
+                    const item = `<b>${companyMarqueeSymbol}</b> <span>${companyMarqueePrice}</span>`;
+                    const marqueeElement = new MarqueeDiv('div');
+                    marqueeElement.appendTo('.marqueeTextContainer');
+                    marqueeElement.write(item);
+                    marqueeElement.addClass("d-flex");
+                    marqueeElement.addClass("marqueeItem");
+                }
+            });
+    }
+
 }
 
-window.onload = getMarqueeInfo();
+const newMarquee = new Marquee(document.getElementById('marquee'));
+newMarquee.renderMarqueeItems();
 
 
 

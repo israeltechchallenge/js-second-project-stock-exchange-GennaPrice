@@ -4,7 +4,6 @@ const searchBtn = document.querySelector("#button-addon2");
 const searchBox = document.querySelector(".searchInputBox")
 const list = document.querySelector(".resultList");
 const loadingSpinner = document.querySelector(".loadingSpinner");
-let image;
 
 function generateSearchList() {
     list.innerHTML = "";

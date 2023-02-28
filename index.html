@@ -15,8 +15,8 @@
 <body>
   <div class="tickerBar">
     <div class="marqueeContent">
-      <div class="marqueeTextContainer d-flex flex-nowrap justify-content-between">
-        <div class="loadingMarquee">More Info Loading........</div>
+      <div id="marquee" class="marqueeTextContainer d-flex flex-nowrap justify-content-between">
+        <!-- <div class="loadingMarquee">More Info Loading........</div> -->
       </div>
     </div>
   </div>
@@ -37,7 +37,17 @@
   <script src="./js/shared.js"></script>
   <script src="./js/marquee.js"></script>
   <script src="./js/script.js"></script>
-
+  <!-- <script>
+    (async function () {
+      const newMarquee = new Marquee(document.getElementById('marquee'));
+      newMarquee.renderMarqueeItems();
+      const form = new SearchForm(document.getElementById('form'));
+      const results = new SearchResult(document.getElementById('results'));
+      form.onSearch((companies) => {
+        results.renderResults(companies)
+      })
+    })()
+  </script> -->
 </body>
 
 </html>
