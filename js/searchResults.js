@@ -1,4 +1,3 @@
-
 const userInput = document.querySelector(".searchInputBox");
 const searchBtn = document.querySelector(".btn");
 const list = document.querySelector(".resultList");
@@ -20,12 +19,13 @@ class ResultListItem {
         wrap.append(this.elem);
     }
 
-    write(text) {
-        this.elem.innerHTML = text;
+    write(text, query) {
+        const highlightedText = text.replace(new RegExp(query, "gi"), match => `<mark>${match}</mark>`);
+        this.elem.innerHTML = highlightedText;
     }
 
-    addClass(className1, className2, className3, className4) {
-        this.elem.classList.add(className1, className2, className3, className4);
+    addClass(...classNames) {
+        this.elem.classList.add(...classNames);
     }
 }
 
@@ -55,11 +55,11 @@ class SearchResult {
                         .then(companyProfile => {
                             const image = companyProfile.profile.image;
                             const changePercent = companyProfile.profile.changes;
-                            const itemText = `<div><img src="${image}" alt="${companySymbol}"><a href= "./company.html?symbol=${companySymbol}"><b>${companyName}(${companySymbol})</b></a></div><div>${changePercent}%</div>`
-
+                            const itemText = `<div><img src="${image}"><a href= "./company.html?symbol=${companySymbol}"><b>${companyName}(${companySymbol})</b></a></div><div>${changePercent}%</div>`
+                            //create result list items
                             const listElement = new ResultListItem("li")
                             listElement.appendTo(".resultList")
-                            listElement.write(itemText);
+                            listElement.write(itemText, query);
                             listElement.addClass("list-group-item", "list-group-item-action", "d-flex", "justify-content-between");
                         });
                 }
@@ -70,4 +70,5 @@ class SearchResult {
 
 const result = new SearchResult(document.querySelector(".resultList"));
 searchBtn.addEventListener('click', result.getSearchList)
+
 

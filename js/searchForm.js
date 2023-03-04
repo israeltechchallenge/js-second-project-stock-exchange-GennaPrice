@@ -15,8 +15,8 @@ class FormElement {
         return elem;
     }
 
-    addClass(className, className2) {
-        this.elem.classList.add(className, className2);
+    addClass(...classNames) {
+        this.elem.classList.add(...classNames);
     }
 
     write(text) {
