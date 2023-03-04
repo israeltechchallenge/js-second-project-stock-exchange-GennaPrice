@@ -16,16 +16,12 @@
   <div class="tickerBar">
     <div class="marqueeContent">
       <div id="marquee" class="marqueeTextContainer d-flex flex-nowrap justify-content-between">
-        <!-- <div class="loadingMarquee">More Info Loading........</div> -->
       </div>
     </div>
   </div>
   <div class="container d-flex flex-column mb-3">
     <h1 class="display-4">Search the <b>NASDAQ</b> Stock Exchange</h1>
-    <div class="input-group mb-3">
-      <input class="searchInputBox form-control" type="text" list="datalistOptions" id="exampleDataList"
-        placeholder="Type to search...">
-      <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+    <div class="form input-group mb-3">
     </div>
     <div class="d-flex justify-content-center">
       <div class="loadingSpinner d-none spinner-border " role="status"></div>
@@ -36,18 +32,18 @@
   </div>
   <script src="./js/shared.js"></script>
   <script src="./js/marquee.js"></script>
-  <script src="./js/script.js"></script>
-  <!-- <script>
+  <script src="./js/searchForm.js"></script>
+  <script src="./js/searchResults.js"></script>
+
+  <script>
     (async function () {
       const newMarquee = new Marquee(document.getElementById('marquee'));
       newMarquee.renderMarqueeItems();
-      const form = new SearchForm(document.getElementById('form'));
-      const results = new SearchResult(document.getElementById('results'));
-      form.onSearch((companies) => {
-        results.renderResults(companies)
-      })
+      //const form = new SearchForm(document.querySelector(".form"));      
+      //const result = new SearchResult(document.querySelector(".resultList"));
+      //searchBtn.addEventListener('click', result.getSearchList)
     })()
-  </script> -->
+  </script>
 </body>
 
 </html>

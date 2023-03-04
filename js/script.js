@@ -1,9 +1,9 @@
 
-const userInput = document.querySelector("#exampleDataList");
-const searchBtn = document.querySelector("#button-addon2");
-const searchBox = document.querySelector(".searchInputBox")
+const userInput = document.querySelector(".searchInputBox");
+const searchBtn = document.querySelector(".btn");
 const list = document.querySelector(".resultList");
 const loadingSpinner = document.querySelector(".loadingSpinner");
+
 
 function generateSearchList() {
     list.innerHTML = "";
@@ -23,12 +23,15 @@ function generateSearchList() {
                 fetch(`${baseURL}company/profile/${companySymbol}`)
                     .then(response => response.json())
                     .then(companyProfile => {
+
                         const image = companyProfile.profile.image;
                         const changePercent = companyProfile.profile.changes;
-                        li = document.createElement("li")
-                        li.innerHTML = `<div><img src="${image}" alt="${companySymbol}"><a href= "./company.html?symbol=${companySymbol}"><b>${companyName}(${companySymbol})</b></a></div><div>${changePercent}%</div>`;
-                        li.classList.add("list-group-item", "list-group-item-action", "d-flex", "justify-content-between")
-                        list.appendChild(li)
+                        itemText = `<div><img src="${image}" alt="${companySymbol}"><a href= "./company.html?symbol=${companySymbol}"><b>${companyName}(${companySymbol})</b></a></div><div>${changePercent}%</div>`
+
+                        const listElement = new ResultListItem("li")
+                        listElement.appendTo(".resultList")
+                        listElement.write(itemText);
+                        listElement.addClass("list-group-item", "list-group-item-action", "d-flex", "justify-content-between");
                     });
             }
             disableSpinner(loadingSpinner)
